@@ -513,7 +513,8 @@
    ============================================================ */
 @media (max-width: 700px) {
   .hero {
-    padding: 70px 0 0;
+    padding: 100px 0 0;
+    min-height: 650px;
     position: relative;
     flex-direction: column;
     align-items: stretch;
@@ -525,7 +526,7 @@
   /* Lottie: centered in right half of viewport */
   .lottie-wrapper {
     position: absolute;
-    top: 80px;
+    top: 90px;
     left: 75%;
     transform: translateX(-50%);
     width: 185px;
@@ -596,12 +597,12 @@
 
   /* Spacer: full width on mobile too, just adjusted margins */
   .hero-spacer {
-    margin: 60px auto 40px;
+    margin: 40px auto 40px;
     width: 200px;
   }
 
   .willkommen {
-    padding: 20px 17px 0;
+    padding: 30px 17px 10px;
   }
 
   .willkommen__heading {

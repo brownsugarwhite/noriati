@@ -21,6 +21,9 @@
   --font-display:   'Cinzel', serif;
   --font-serif:     'Cormorant Garamond', serif;
   --font-sans:      'Nunito Sans', sans-serif;
+
+  /* Ensure text is visible while fonts load */
+  font-display: swap;
 }
 
 /* ---- Zen Circle Canvas ---- */

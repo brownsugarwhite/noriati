@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brownsugarwhite.github.io/noriati/sitemap.xml

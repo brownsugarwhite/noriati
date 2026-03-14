@@ -218,11 +218,13 @@
   font-weight: 400;
   line-height: 0; /* collapse outer container, spans control their own line-height */
   display: block;
+  margin-bottom: 4px; /* spacing before subline */
 }
 
 .hero-h1 span {
   display: block;
   line-height: 1;
+  margin-bottom: 4px;
 }
 
 .hero-h1 span:first-child {

@@ -822,7 +822,7 @@ select.kontakt__input option {
     top: auto;
     bottom: -175px; /* center of 350px canvas sits at the bottom line */
     right: auto;
-    left: calc(23px + 180px); /* horizontal center of the flower lottie */
+    left: calc(23px + 180px - 15px); /* horizontal center of the flower lottie, nudged left */
     transform: translateX(-50%);
     width: 350px;
     height: 350px;

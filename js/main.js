@@ -103,29 +103,26 @@
     });
 
     /* Start particles 1s before lottie ends, fade in */
+    canvas.style.opacity = '0';
+
+    function fadeInParticles() {
+      if (particlesStarted) return;
+      particlesStarted = true;
+      startParticles();
+      /* Double rAF to ensure opacity:0 is painted before transitioning to 1 */
+      requestAnimationFrame(() => {
+        canvas.style.transition = 'opacity 0.5s ease-in';
+        requestAnimationFrame(() => { canvas.style.opacity = '1'; });
+      });
+    }
+
     anim.addEventListener('DOMLoaded', () => {
       const duration = ((anim.totalFrames || 105) / (anim.frameRate || 30)) * 1000;
       const earlyStart = Math.max(0, duration - 1000);
-      setTimeout(() => {
-        if (!particlesStarted) {
-          particlesStarted = true;
-          canvas.style.opacity = '0';
-          canvas.style.transition = 'opacity 0.5s ease-in';
-          startParticles();
-          requestAnimationFrame(() => { canvas.style.opacity = '1'; });
-        }
-      }, earlyStart);
+      setTimeout(fadeInParticles, earlyStart);
     });
 
-    anim.addEventListener('complete', () => {
-      if (!particlesStarted) {
-        particlesStarted = true;
-        canvas.style.opacity = '0';
-        canvas.style.transition = 'opacity 0.5s ease-in';
-        startParticles();
-        requestAnimationFrame(() => { canvas.style.opacity = '1'; });
-      }
-    });
+    anim.addEventListener('complete', fadeInParticles);
   }
 
   /* ============================================================

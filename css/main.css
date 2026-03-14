@@ -50,6 +50,10 @@ html {
 @media (max-width: 700px) {
   html {
     scroll-padding-top: 80px;
+  }
+}
+
+html {
   background-color: var(--brand-white);
 }
 

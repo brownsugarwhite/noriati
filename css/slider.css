@@ -1,0 +1,431 @@
+/* ============================================================
+   SLIDER.CSS – Behandlungsangebot Section
+   ============================================================ */
+
+/* ============================================================
+   BEHANDLUNG SECTION
+   ============================================================ */
+.behandlung {
+  position: relative;
+  overflow: hidden;
+}
+
+.behandlung__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* ---- Heading ---- */
+.behandlung__head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.behandlung__heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.15;
+  background: linear-gradient(-54.5deg, var(--brand-main), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.behandlung__intro {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--brand-text);
+  padding-left: 5px;
+}
+
+/* ============================================================
+   SLIDER FRAME
+   ============================================================ */
+.behandlung__slider-frame {
+  /* Break out of 23px inner padding to fill full section width */
+  margin: 0 -23px;
+  position: relative;
+  height: 400px; /* 350px cards + 23px gap + 27px pagination */
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  overflow: display; /* let slider extend beyond frame; section overflow:hidden clips at viewport */
+}
+
+/* ============================================================
+   SLIDER TRACK
+   ============================================================ */
+.slider-track {
+  position: relative; /* for absolute gras-line child */
+  height: 350px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding-left: 23px;
+  will-change: transform;
+  transition: transform 0.5s ease-in-out;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.slider-card {
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 17px;
+  flex-shrink: 0;
+}
+
+.slider-card__lottie-wrapper {
+  position: relative;
+  width: 250px;
+  height: 270px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.slider-card__lottie {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Grass strokes at base of each lottie container */
+.slider-card__gras {
+  position: absolute;
+  bottom: -1px; /* overlap gras line by 1px to close the gap */
+  left: 0;
+  width: 100%;
+  height: 21px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.slider-card__gras svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-card__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 193px;
+  height: 80px;
+  padding: 10px 15px;
+  flex-shrink: 0;
+}
+
+.slider-card__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.1;
+  color: var(--brand-main);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ---- Spark between cards ---- */
+.slider-spark-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  padding-bottom: 35px;
+}
+
+/* ---- Gras line (tapered dash pattern, moves with track) ---- */
+.slider-gras-line {
+  position: absolute;
+  top: 250px;
+  left: 0;
+  /* width set by JS to span all cards */
+  height: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.slider-gras-line__segment {
+  height: 0;
+  border-top: 1px solid var(--brand-secondary);
+  flex-shrink: 0;
+}
+
+.slider-gras-line__segment--small  { width: 5px; }
+.slider-gras-line__segment--medium { width: 13px; }
+.slider-gras-line__segment--big    { width: 20px; }
+.slider-gras-line__segment--full   { flex: 1; min-width: 0; }
+
+/* ============================================================
+   GRADIENT FADES – direct children of .behandlung (full-width)
+   top & height set dynamically by slider.js
+   ============================================================ */
+.slider-fade {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.slider-fade--left {
+  left: 0;
+  width: 120px;
+  background: linear-gradient(to right, white 20%, transparent 100%);
+}
+
+.slider-fade--right {
+  right: 0;
+  width: 120px;
+  background: linear-gradient(to left, white 20%, transparent 100%);
+}
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+.slider-pagination {
+  height: 27px;
+  flex-shrink: 0;
+  padding: 0 23px;
+  display: flex;
+  align-items: center;
+  gap: 0; /* arrows connect directly to lines */
+}
+
+.slider-pagination__middle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+
+.slider-pagination__line {
+  flex: 1;
+  height: 1px;
+  background: var(--brand-secondary);
+  min-width: 0;
+  transition: background-color 0.2s ease;
+}
+
+/* Grey out line next to disabled arrow */
+.slider-pagination__line--disabled {
+  background: var(--brand-grey-alpha50);
+}
+
+.slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ---- Pagination dot ---- */
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+  background: var(--brand-grey);
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: width 0.3s ease;
+}
+
+/* ---- Active dot = progress bar ---- */
+.slider-dot--active {
+  width: 22px;
+  height: 8px;
+  background: var(--brand-grey);
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: default;
+}
+
+.slider-dot--active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--brand-secondary);
+  border-radius: 10px;
+  animation: sliderProgress 5s linear forwards;
+}
+
+.slider-dot--active.is-paused::after {
+  animation-play-state: paused;
+}
+
+@keyframes sliderProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* ============================================================
+   ARROWS
+   ============================================================ */
+.slider-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 20px;
+  border: 1px solid var(--brand-secondary);
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  color: var(--brand-secondary);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover: solid teal fill, white icon */
+.slider-arrow:hover:not(:disabled) {
+  background-color: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+  color: var(--brand-white);
+}
+
+/* Active / Click: solid purple fill, white icon */
+.slider-arrow:active:not(:disabled) {
+  background-color: var(--brand-purple-links);
+  border-color: var(--brand-purple-links);
+  color: var(--brand-white);
+}
+
+/* Disabled: grey outline + × icon */
+.slider-arrow:disabled {
+  border-color: var(--brand-grey-alpha50);
+  color: var(--brand-grey-alpha50);
+  cursor: default;
+}
+
+/* Arrow icons: show chevron by default, cross when disabled */
+.arrow-icon-chevron { display: flex; align-items: center; }
+.arrow-icon-cross   { display: none;  align-items: center; }
+
+.slider-arrow:disabled .arrow-icon-chevron { display: none; }
+.slider-arrow:disabled .arrow-icon-cross   { display: flex; }
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.behandlung__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 23px;
+}
+
+.behandlung__cta-text {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--brand-text);
+  padding-left: 5px;
+}
+
+@media (max-width: 880px) {
+  .behandlung__heading {
+    font-size: 48px;
+  }
+}
+
+/* ============================================================
+   MOBILE (<700px)
+   ============================================================ */
+@media (max-width: 700px) {
+  .behandlung__inner {
+    padding: 0 17px;
+    gap: 40px;
+  }
+
+  .behandlung__heading {
+    font-size: 40px;
+    background: linear-gradient(-66.5deg, var(--brand-main), var(--brand-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .behandlung__intro {
+    font-size: 17px;
+  }
+
+  .behandlung__slider-frame {
+    margin: 0 -17px;
+    height: 346px; /* 296px cards + 23px gap + 27px pagination */
+  }
+
+  .slider-track {
+    height: 296px;
+    gap: 10px;
+    /* padding-left set by JS to center first card */
+  }
+
+  .slider-card {
+    width: 164px;
+  }
+
+  .slider-card__lottie-wrapper {
+    width: 164px;
+    height: 230px;
+  }
+
+  .slider-card__text {
+    width: 164px;
+    height: 66px;
+    padding: 7px 13px;
+  }
+
+  .slider-card__title {
+    font-size: 18px;
+  }
+
+  .slider-gras-line {
+    top: 210px;
+  }
+
+  /* slider-fade top/height set by JS */
+
+  .slider-pagination {
+    padding: 0 17px;
+  }
+
+  .behandlung__cta-text {
+    font-size: 17px;
+  }
+
+  .behandlung__cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,120 @@
+/* ============================================================
+   MAIN.CSS – Design Tokens, Reset, Typografie, Utilities
+   ============================================================ */
+
+/* ---- Design Tokens ---- */
+:root {
+  --brand-main:           #20726d;
+  --brand-secondary:      #6ea996;
+  --brand-text:           #686868;
+  --brand-grey:           #cce1da;
+  --brand-purple-links:   #9747ff;
+  --brand-white:          #ffffff;
+  --brand-white-alpha80:  rgba(255, 255, 255, 0.8);
+  --brand-grey-alpha25:   rgba(204, 225, 218, 0.25);
+  --brand-grey-alpha50:   rgba(204, 225, 218, 0.5);
+  --brand-black:          #000000;
+  --brand-light-text:     #c0d5ce;
+
+  --gradient-heading: linear-gradient(-75deg, var(--brand-main), var(--brand-secondary));
+
+  --font-display:   'Cinzel', serif;
+  --font-serif:     'Cormorant Garamond', serif;
+  --font-sans:      'Nunito Sans', sans-serif;
+}
+
+/* ---- Zen Circle Canvas ---- */
+#zen-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/* ---- CSS Reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  background-color: var(--brand-white);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--brand-text);
+  background-color: transparent; /* let zen circles show through from behind */
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ---- Gradient Text Utility ---- */
+.heading-gradient {
+  background: var(--gradient-heading);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Larger variant (used for Willkommen heading desktop) */
+.heading-gradient-large {
+  background: linear-gradient(-54.5deg, var(--brand-main), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- SVG / Lottie stroke normalization ---- */
+svg path[stroke],
+svg circle[stroke],
+svg ellipse[stroke],
+svg line[stroke],
+svg polyline[stroke],
+svg polygon[stroke],
+svg rect[stroke] {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1px;
+}
+
+/* ---- Accessibility ---- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,202 @@
+/* ============================================================
+   COMPONENTS.CSS – Buttons, Burger
+   ============================================================ */
+
+/* ---- Button (Default) ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1;
+  padding: 13px 25px;
+  border-radius: 13px;
+  background-color: var(--brand-main);
+  color: var(--brand-white);
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--brand-secondary);
+}
+
+.btn:active {
+  background-color: var(--brand-purple-links);
+}
+
+/* Outline variant */
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--brand-main);
+  color: var(--brand-main);
+}
+
+.btn--outline:hover {
+  background-color: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+  color: var(--brand-white);
+}
+
+.btn--outline:active {
+  background-color: var(--brand-purple-links);
+  border-color: var(--brand-purple-links);
+  color: var(--brand-white);
+}
+
+/* ---- Button Small ---- */
+.btn-small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1;
+  padding: 8px 15px;
+  border-radius: 10px;
+  background-color: var(--brand-main);
+  color: var(--brand-white);
+  border: 1px solid transparent;
+  width: 168px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-small:hover {
+  background-color: var(--brand-secondary);
+}
+
+.btn-small:active {
+  background-color: var(--brand-purple-links);
+}
+
+/* ---- Nav Button ---- */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1;
+  height: 40px;
+  padding: 0 15px;
+  color: var(--brand-main);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-btn:hover,
+.nav-btn.is-current {
+  background-color: rgba(204, 225, 218, 0.25);
+  color: var(--brand-main);
+}
+
+.nav-btn:active,
+.nav-btn.active {
+  background-color: var(--brand-purple-links);
+  color: var(--brand-white);
+}
+
+/* ---- Spark ---- */
+.spark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---- Burger Button ---- */
+.burger-btn {
+  display: none; /* shown via hero.css at breakpoint */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.burger-line {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: var(--brand-main);
+  border-radius: 2px;
+  transform-origin: center center;
+}
+
+/* Close animation (only after user has opened once) */
+.burger-btn.was-active .burger-line-top {
+  animation: burgerTopClose 0.4s ease forwards;
+}
+
+.burger-btn.was-active:not(.burger--active) .burger-line-mid {
+  opacity: 0;
+  animation: burgerMidClose 0s 0.2s forwards;
+}
+
+.burger-btn.was-active .burger-line-bot {
+  animation: burgerBotClose 0.4s ease forwards;
+}
+
+/* Burger → X */
+.burger-btn.burger--active .burger-line-top {
+  animation: burgerTopOpen 0.4s ease forwards;
+}
+
+.burger-btn.burger--active .burger-line-mid {
+  animation: burgerMidOpen 0s 0.2s forwards;
+}
+
+@keyframes burgerMidOpen {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.burger-btn.burger--active .burger-line-bot {
+  animation: burgerBotOpen 0.4s ease forwards;
+}
+
+/* Open: move to center (0–50%), then rotate (50–100%) */
+@keyframes burgerTopOpen {
+  0%   { transform: translateY(0) rotate(0); }
+  50%  { transform: translateY(10px) rotate(0); }
+  100% { transform: translateY(10px) rotate(45deg); }
+}
+
+@keyframes burgerBotOpen {
+  0%   { transform: translateY(0) rotate(0); }
+  50%  { transform: translateY(-10px) rotate(0); }
+  100% { transform: translateY(-10px) rotate(-45deg); }
+}
+
+@keyframes burgerMidClose {
+  to { opacity: 1; }
+}
+
+/* Close: unrotate (0–50%), then move back (50–100%) */
+@keyframes burgerTopClose {
+  0%   { transform: translateY(10px) rotate(45deg); }
+  50%  { transform: translateY(10px) rotate(0); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes burgerBotClose {
+  0%   { transform: translateY(-10px) rotate(-45deg); }
+  50%  { transform: translateY(-10px) rotate(0); }
+  100% { transform: translateY(0) rotate(0); }
+}

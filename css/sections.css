@@ -1,0 +1,934 @@
+/* ============================================================
+   SECTIONS.CSS – Ablauf, Über mich, Kosten & Abrechnung
+   ============================================================ */
+
+/* ============================================================
+   SHARED
+   ============================================================ */
+.section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 23px;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.15;
+  background: linear-gradient(-54.5deg, var(--brand-main), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--brand-text);
+  padding-left: 5px;
+}
+
+.section-body strong {
+  font-weight: 600;
+  color: var(--brand-main);
+}
+
+/* ============================================================
+   ABLAUF DER THERAPIE
+   ============================================================ */
+.ablauf {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.ablauf-cards {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
+  max-width: 100%;
+}
+
+.ablauf-card-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+.ablauf-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding: 23px 23px 30px;
+  border: 1px solid var(--brand-grey);
+  border-radius: 27px;
+  height: 100%;
+  /* Stagger fade-in animation */
+  opacity: 0;
+  transform: translateY(100px);
+  background-color: var(--brand-grey-alpha50);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out, background-color 0.8s ease-out;
+}
+
+.ablauf-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  background-color: transparent;
+}
+
+.ablauf-card__number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 0.9;
+  color: var(--brand-grey);
+}
+
+.ablauf-card__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--brand-main);
+}
+
+.ablauf-card__body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--brand-text);
+}
+
+/* ============================================================
+   ÜBER MICH
+   ============================================================ */
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: center;
+}
+
+.about-main {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Lottie column: lottie + vertical line + arrow */
+.about-lottie-col {
+  display: flex;
+  align-items: flex-start;
+  padding-right: 15px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.about-lottie-wrapper {
+  position: relative;
+  width: 200px;
+  height: 400px;
+  overflow: hidden;
+  margin-right: -15px;
+  flex-shrink: 0;
+}
+
+.about-lottie-wrapper__lottie {
+  position: absolute;
+  width: 170px;
+  height: 336px;
+  top: 0;
+  right: 0;
+}
+
+.about-lottie-wrapper__particles {
+  position: absolute;
+  top: calc(50% - 30px);
+  right: -175px;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 350px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Vertical line + arrow down */
+.about-line-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30px;
+  height: 100%;
+  margin-right: -15px;
+  flex-shrink: 0;
+}
+
+.about-line-wrapper__line {
+  flex: 1;
+  width: 1px;
+  background: var(--brand-secondary);
+}
+
+.about-line-wrapper__arrow {
+  width: 27px;
+  height: 27px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--brand-secondary);
+  border-radius: 20px;
+  color: var(--brand-secondary);
+}
+
+/* Text column */
+.about-textbox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.about-textbox__heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.15;
+  background: linear-gradient(-78.4deg, var(--brand-main), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Qualifikationen */
+.qualifikationen {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+  align-items: center;
+  width: 100%;
+}
+
+.qualifikationen__heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.qualifikationen__heading-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--brand-main);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.qualifikationen__line-short {
+  width: 42px;
+  height: 1px;
+  background: var(--brand-secondary);
+  flex-shrink: 0;
+}
+
+.qualifikationen__line-long {
+  flex: 1;
+  height: 1px;
+  background: var(--brand-secondary);
+  min-width: 0;
+}
+
+.qualifikationen__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 36px;
+  width: 100%;
+}
+
+.qual-item {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.qual-item__icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 13px;
+  color: var(--brand-secondary);
+}
+
+.qual-item__text {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--brand-main);
+}
+
+/* ============================================================
+   KOSTEN & ABRECHNUNG
+   ============================================================ */
+.kosten {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+.kosten__head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.kosten__list-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 23px 36px;
+  border: 1px solid var(--brand-grey);
+  border-radius: 27px;
+}
+
+.kosten__list-item {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.kosten__list-item-text {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--brand-main);
+}
+
+/* ============================================================
+   KONTAKT SECTION
+   ============================================================ */
+.kontakt {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  align-items: flex-start;
+}
+
+.kontakt__head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Select Buttons */
+.kontakt__selects {
+  display: flex;
+  gap: 23px;
+  width: 100%;
+}
+
+/* Default: teal border, rounded-13px */
+.select-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  height: 162px;
+  padding-bottom: 10px;
+  border: 1px solid var(--brand-secondary);
+  border-radius: 13px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, border-radius 0.2s ease;
+}
+
+/* Hover: purple border, rounded-23px */
+.select-btn:hover:not(.is-selected) {
+  border-color: var(--brand-purple-links);
+  border-radius: 23px;
+}
+
+/* Selected: solid teal bg, rounded-13px */
+.select-btn.is-selected {
+  background-color: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+}
+
+.select-btn__icon {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-btn__icon img {
+  max-width: 100%;
+  max-height: 100%;
+  transition: filter 0.2s ease;
+}
+
+/* Hover: icon turns purple */
+.select-btn:hover:not(.is-selected) .select-btn__icon img {
+  filter: brightness(0) saturate(100%) invert(31%) sepia(50%) saturate(2000%) hue-rotate(240deg) brightness(90%);
+}
+
+/* Selected: icon turns white */
+.select-btn.is-selected .select-btn__icon img {
+  filter: brightness(0) invert(1);
+}
+
+.select-btn__label {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--brand-main);
+  transition: color 0.2s ease;
+}
+
+/* Hover: label turns purple */
+.select-btn:hover:not(.is-selected) .select-btn__label {
+  color: var(--brand-purple-links);
+}
+
+/* Selected: label turns white */
+.select-btn.is-selected .select-btn__label {
+  color: var(--brand-white);
+}
+
+/* Form Fields */
+.kontakt__form {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  width: 100%;
+}
+
+.kontakt__row {
+  display: flex;
+  gap: 23px;
+  width: 100%;
+}
+
+.kontakt__field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kontakt__label {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--brand-main);
+  padding: 0 14px;
+}
+
+/* Default state: teal border */
+.kontakt__input,
+.kontakt__textarea {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  color: var(--brand-text);
+  border: 1px solid var(--brand-secondary);
+  border-radius: 7px;
+  padding: 10px 15px;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-radius 0.2s ease;
+}
+
+.kontakt__input::placeholder,
+.kontakt__textarea::placeholder {
+  font-weight: 300;
+  color: var(--brand-light-text);
+}
+
+/* Date & select: match placeholder color when empty */
+.kontakt__input[type="date"] {
+  color: var(--brand-light-text);
+}
+
+.kontakt__input[type="date"].is-filled {
+  color: var(--brand-text);
+}
+
+.kontakt__input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(80%) sepia(10%) saturate(500%) hue-rotate(110deg);
+  cursor: pointer;
+}
+
+select.kontakt__input {
+  color: var(--brand-light-text);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23c0d5ce' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+}
+
+select.kontakt__input.is-filled {
+  color: var(--brand-text);
+}
+
+select.kontakt__input option {
+  color: var(--brand-text);
+}
+
+.kontakt__label {
+  transition: color 0.2s ease;
+}
+
+/* Hover state: purple border + shadow + rounded-13px */
+.kontakt__field:hover .kontakt__label {
+  color: var(--brand-purple-links);
+}
+
+.kontakt__input:hover,
+.kontakt__textarea:hover {
+  border-color: var(--brand-purple-links);
+  border-radius: 13px;
+  box-shadow: 0px 4px 9px 0px rgba(178, 168, 182, 0.23);
+  background: var(--brand-white);
+}
+
+/* Focus state: purple border, purple label */
+.kontakt__field:focus-within .kontakt__label {
+  color: var(--brand-purple-links);
+}
+
+.kontakt__input:focus,
+.kontakt__textarea:focus {
+  border-color: var(--brand-purple-links);
+  border-radius: 7px;
+  background: var(--brand-white);
+  box-shadow: none;
+}
+
+/* Filled state (via JS): grey bg + grey border */
+.kontakt__input.is-filled,
+.kontakt__textarea.is-filled {
+  border-color: var(--brand-grey);
+  background: var(--brand-grey-alpha25);
+  font-weight: 400;
+}
+
+.kontakt__field.is-filled .kontakt__label {
+  color: var(--brand-main);
+}
+
+.kontakt__textarea {
+  height: 240px;
+  resize: vertical;
+}
+
+/* DSGVO Checkbox */
+.kontakt__checkbox {
+  padding: 0 5px;
+}
+
+.kontakt__checkbox-label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--brand-text);
+  cursor: pointer;
+}
+
+.kontakt__checkbox-label input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border: 1px solid var(--brand-main);
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.kontakt__checkbox-label input[type="checkbox"]:checked {
+  background-color: var(--brand-main);
+}
+
+.kontakt__checkbox-label input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.kontakt__checkbox-label a {
+  color: var(--brand-purple-links);
+  text-decoration: underline;
+}
+
+/* Submit */
+.kontakt__submit {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.kontakt__submit-text {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--brand-main);
+  line-height: 1.45;
+}
+
+.kontakt__submit-text a {
+  color: var(--brand-purple-links);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: linear-gradient(to bottom, rgba(204, 225, 218, 0.25), rgba(182, 255, 231, 0.25));
+  padding: 80px 0;
+}
+
+.footer-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Address column */
+.footer-address {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.footer-address__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-label {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--brand-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+}
+
+.footer-address__praxis {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--brand-main);
+  line-height: 1.1;
+}
+
+.footer-address__praxis span:first-child {
+  display: block;
+  font-size: 20px;
+}
+
+.footer-address__praxis span:last-child {
+  display: block;
+  font-size: 20.5px;
+}
+
+.footer-address__name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 23px;
+  color: var(--brand-black);
+}
+
+.footer-address__details {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--brand-text);
+}
+
+.footer-address__details a {
+  font-weight: 400;
+  color: var(--brand-purple-links);
+}
+
+.footer-copyright {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--brand-main);
+}
+
+/* Vertical line */
+.footer-line {
+  width: 1px;
+  height: 200px;
+  align-self: stretch;
+  background: var(--brand-grey);
+}
+
+/* Navigation columns */
+.footer-nav {
+  display: flex;
+  gap: 36px;
+}
+
+.footer-nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-nav-col a,
+.footer-nav-col span {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--brand-text);
+}
+
+.footer-nav-col a.footer-link--highlight {
+  font-weight: 400;
+  color: var(--brand-purple-links);
+}
+
+.footer-nav-col a:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 880px) {
+  .section-heading,
+  .about-textbox__heading {
+    font-size: 48px;
+  }
+}
+
+/* ============================================================
+   MOBILE (<700px)
+   ============================================================ */
+@media (max-width: 700px) {
+  .section-inner {
+    padding: 0 17px;
+  }
+
+  .section-heading {
+    font-size: 40px;
+    background: linear-gradient(-66.5deg, var(--brand-main), var(--brand-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .section-body {
+    font-size: 17px;
+  }
+
+  /* Ablauf: stack vertically */
+  .ablauf-cards {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ablauf-card-wrapper {
+    width: 100%;
+  }
+
+  .ablauf-card {
+    gap: 13px;
+  }
+
+  .ablauf-card__body {
+    font-size: 17px;
+  }
+
+  /* About: stack vertically, lottie on top */
+  .about-main {
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  .about-lottie-col {
+    width: 100%;
+    padding-right: 0;
+    border-bottom: 1px solid var(--brand-secondary);
+  }
+
+  .about-lottie-wrapper {
+    width: 100%;
+    height: 200px;
+    margin-right: 0;
+  }
+
+  .about-lottie-wrapper__lottie {
+    max-width: 360px;
+    width: calc(100% - 46px); /* 23px padding left + right */
+    height: auto;
+    right: auto;
+    left: 23px;
+    transform: none;
+    bottom: 0;
+    top: auto;
+  }
+
+  .about-lottie-wrapper__particles {
+    top: auto;
+    bottom: -175px; /* center of 350px canvas sits at the bottom line */
+    right: auto;
+    left: calc(23px + 180px); /* horizontal center of the flower lottie */
+    transform: translateX(-50%);
+    width: 350px;
+    height: 350px;
+  }
+
+  .about-line-wrapper {
+    display: none;
+  }
+
+  .about-textbox__heading {
+    font-size: 40px;
+    background: linear-gradient(-78.5deg, var(--brand-main), var(--brand-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .qualifikationen__line-short {
+    width: 23px;
+  }
+
+  .qualifikationen__list {
+    padding: 0 23px;
+  }
+
+  /* Kosten */
+  .kosten {
+    gap: 23px;
+  }
+
+  .kosten__head .section-heading {
+    background: linear-gradient(-66.5deg, var(--brand-main), var(--brand-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Kontakt mobile: fields stack */
+  .kontakt__row {
+    flex-direction: column;
+  }
+
+  .kontakt__submit {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .kontakt__submit .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .kontakt__submit-text {
+    font-size: 17px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .select-btn__label {
+    font-size: 17px;
+  }
+
+  .kontakt__textarea {
+    height: 220px;
+  }
+
+}
+
+/* ============================================================
+   FOOTER MOBILE (<800px)
+   ============================================================ */
+@media (max-width: 800px) {
+  .site-footer {
+    padding: 50px 0 17px;
+  }
+
+  .footer-wrapper {
+    flex-direction: column;
+    gap: 36px;
+    padding: 0 23px;
+  }
+
+  .footer-line {
+    display: none;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 0;
+    order: -1;
+  }
+
+  .footer-nav-col {
+    gap: 10px;
+  }
+
+  /* Hide "Rechtliches" heading on mobile */
+  .footer-nav-col:last-child .footer-label {
+    display: none;
+  }
+
+  .footer-copyright {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer-wrapper {
+    padding: 0 17px;
+  }
+}

@@ -1,0 +1,632 @@
+/* ============================================================
+   HERO.CSS – Navigation, Hero Section, Spacer, Willkommen
+   ============================================================ */
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--brand-white-alpha80);
+  border-bottom: 1px solid var(--brand-grey);
+  transition: box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+/* Spark between logo and nav-links: hidden until scroll */
+.nav-spark {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin: 0;
+  transition: max-width 0.5s ease-out, opacity 0.4s ease-out, margin 0.5s ease-out;
+}
+
+/* Logo: collapsed on desktop until scroll */
+.logo-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  margin: 0;
+  transition: max-width 0.5s ease-out, opacity 0.4s ease-out, margin 0.5s ease-out;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-nav__title {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  line-height: 1.1;
+}
+
+.logo-nav__title span:first-child {
+  font-size: 19px;
+}
+
+.logo-nav__title span:last-child {
+  font-size: 19.5px;
+}
+
+/* Divider + name: mobile-only – hidden on desktop */
+.logo-nav__divider {
+  display: none;
+  width: 1px;
+  height: 30px;
+  background: var(--brand-grey);
+  flex-shrink: 0;
+}
+
+.logo-nav__name {
+  display: none;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 23px;
+  color: var(--brand-black);
+  white-space: nowrap;
+}
+
+/* Scrolled state */
+.main-nav--scrolled {
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  box-shadow: 0px 4px 23px 0px rgba(157, 186, 176, 0.23), 0px 24px 100px 0px rgba(218, 246, 237, 0.25);
+}
+
+.main-nav--scrolled .logo-nav {
+  max-width: 280px;
+  opacity: 1;
+  pointer-events: auto;
+  margin-right: 18px;
+}
+
+.main-nav--scrolled .nav-spark {
+  max-width: 20px;
+  opacity: 1;
+  margin-right: 7px;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 700px;
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+/* ============================================================
+   NAV OVERLAY (Mobile / Tablet)
+   ============================================================ */
+.nav-overlay {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background: var(--brand-white-alpha80);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  padding: 24px 17px 32px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav-overlay__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.burger-nav-btn {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 36px;
+  color: var(--brand-main);
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: color 0.2s ease;
+}
+
+.burger-nav-btn:hover {
+  color: var(--brand-purple-links);
+}
+
+.burger-nav-btn--legal {
+  font-size: 23px;
+  color: var(--brand-purple-links);
+}
+
+.burger-nav-btn--legal:hover {
+  opacity: 0.8;
+}
+
+.nav-overlay__legal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  position: relative;
+  max-width: 860px;
+  max-height: 600px;
+  margin: 0 auto;
+  padding: 100px 23px 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+/* Hero Text */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 140px;
+  gap: 50px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Wrapper: h1 + subline together */
+.hero-heading {
+  display: flex;
+  flex-direction: column;
+  width: 467px;
+}
+
+/* H1 */
+.hero-h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0; /* collapse outer container, spans control their own line-height */
+  display: block;
+}
+
+.hero-h1 span {
+  display: block;
+  line-height: 1;
+}
+
+.hero-h1 span:first-child {
+  font-size: 54px;
+}
+
+.hero-h1 span:last-child {
+  font-size: 55px;
+}
+
+/* Hero Subline */
+.hero-subline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 19px;
+}
+
+.hero-subline__name {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 36px;
+  color: var(--brand-black);
+  line-height: 1;
+}
+
+.hero-subline__city {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 36px;
+  color: var(--brand-secondary);
+  line-height: 1;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  height: 51px;
+}
+
+/* Lottie Wrapper */
+.lottie-wrapper {
+  position: relative;
+  width: 300px;
+  height: 630px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+#lottie-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#particle-canvas {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: calc(5% - 30px);
+  left: 10px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================================
+   HERO SPACER (spacer_grey)
+   ============================================================ */
+.hero-spacer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 260px;
+  height: 20px;
+  margin: 40px auto;
+}
+
+/* Lines grow to fill space on each side of the sparks */
+.hero-spacer::before,
+.hero-spacer::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--brand-grey);
+}
+
+.hero-spacer .spark {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   SECTION SPACER (reusable spacer_grey between sections)
+   ============================================================ */
+.section-spacer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 260px;
+  height: 20px;
+  margin: 80px auto;
+}
+
+.section-spacer::before,
+.section-spacer::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--brand-grey);
+}
+
+.section-spacer .spark {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   WILLKOMMEN SECTION
+   ============================================================ */
+.willkommen {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 50px 23px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.willkommen__heading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1.15;
+  background: linear-gradient(-54.5deg, var(--brand-main), var(--brand-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.willkommen__body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--brand-text);
+}
+
+/* ============================================================
+   PAGE LOAD ANIMATIONS
+   ============================================================ */
+.anim-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+}
+
+.anim-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   TABLET BREAKPOINT (700px – 880px)
+   ============================================================ */
+@media (max-width: 880px) {
+  .hero {
+    padding: 90px 23px 60px;
+    max-width: none;
+    gap: 0px;
+  }
+
+  .hero-heading {
+    width: auto;
+  }
+
+  .hero-text {
+    min-width: 410px;
+    max-width: 410px;
+    padding-left: 36px;
+    gap: 36px;
+  }
+
+  .hero-h1 span:first-child {
+    font-size: 43px;
+  }
+
+  .hero-h1 span:last-child {
+    font-size: 44px;
+  }
+
+  .hero-subline__name,
+  .hero-subline__city {
+    font-size: 32px;
+  }
+
+  /* Buttons stack vertically on tablet */
+  .hero-buttons {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .lottie-wrapper {
+    position: absolute;
+    top: 90px;
+    left: calc(75% + 30px);
+    transform: translateX(-50%);
+    width: 260px;
+    height: 545px;
+  }
+
+  #particle-canvas {
+    top: calc(5% - 55px);
+    left: -5px;
+  }
+
+  .willkommen__heading {
+    font-size: 48px;
+  }
+
+}
+
+/* ============================================================
+   BURGER BREAKPOINT (<900px) – Show burger, hide nav-links
+   ============================================================ */
+@media (max-width: 1100px) {
+  .main-nav {
+    height: 70px;
+    justify-content: space-between;
+    padding: 0 17px;
+    gap: 0;
+  }
+
+  /* Logo: always visible, full logo with divider + name */
+  .logo-nav {
+    max-width: none;
+    overflow: visible;
+    white-space: normal;
+    opacity: 1;
+    pointer-events: auto;
+    margin-right: 0;
+    transition: none;
+  }
+
+  .logo-nav__divider {
+    display: inline-block;
+  }
+
+  .logo-nav__name {
+    display: block;
+  }
+
+  /* Hide desktop nav elements */
+  .nav-links {
+    display: none;
+  }
+
+  .nav-spark {
+    display: none;
+  }
+
+  .main-nav > .btn-small {
+    display: none;
+  }
+
+  .burger-btn {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   MOBILE BREAKPOINT (<700px)
+   ============================================================ */
+@media (max-width: 700px) {
+  .hero {
+    padding: 70px 0 0;
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100vw;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  /* Lottie: centered in right half of viewport */
+  .lottie-wrapper {
+    position: absolute;
+    top: 80px;
+    left: 75%;
+    transform: translateX(-50%);
+    width: 185px;
+    height: 380px;
+    flex-shrink: 0;
+  }
+
+  #particle-canvas {
+    top: -63px;
+    left: -55px;
+  }
+
+  /* Text column: stacks heading + buttons vertically */
+  .hero-text {
+    position: relative;
+    padding: 0 23px;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0;
+    z-index: 2;
+  }
+
+  .hero-heading {
+    width: 100%;
+    padding: 0;
+    margin-bottom: auto;
+    padding-top: 150px; /* push heading below the lottie bloom */
+  }
+
+  .hero-h1 span {
+    white-space: nowrap;
+  }
+
+  .hero-h1 span:first-child {
+    font-size: clamp(30px, 6.5vw, 40px);
+  }
+
+  .hero-h1 span:last-child {
+    font-size: clamp(31px, 6.7vw, 41px);
+  }
+
+  .hero-subline {
+    gap: 19px;
+  }
+
+  .hero-subline__name,
+  .hero-subline__city {
+    font-size: clamp(23px, 6vw, 32px);
+  }
+
+  /* Buttons: full viewport width, below heading */
+  .hero-buttons {
+    flex-direction: column;
+    height: auto;
+    align-items: stretch;
+    width: 100vw;
+    margin-left: -23px;
+    gap: 20px;
+    padding: 70px 17px 40px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Spacer: full width on mobile too, just adjusted margins */
+  .hero-spacer {
+    margin: 60px auto 40px;
+    width: 200px;
+  }
+
+  .willkommen {
+    padding: 20px 17px 0;
+  }
+
+  .willkommen__heading {
+    font-size: 40px;
+    background: linear-gradient(-66.5deg, var(--brand-main), var(--brand-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .willkommen__body {
+    font-size: 17px;
+  }
+
+  .section-spacer {
+    margin: 70px auto;
+    width: 200px;
+  }
+
+  /* Mobile overlay text sizes */
+  .burger-nav-btn {
+    font-size: 34px;
+  }
+
+  .burger-nav-btn--legal {
+    font-size: 21px;
+  }
+}

@@ -95,8 +95,14 @@
       entries.forEach(function (entry) {
         if (entry.isIntersecting && !hasStarted) {
           hasStarted = true;
-          anim.play();
+          /* Start particles 1s before visible, fade in */
+          particleCanvas.style.opacity = '0';
+          particleCanvas.style.transition = 'opacity 0.5s ease-in';
           startAboutParticles();
+          setTimeout(function () {
+            anim.play();
+            particleCanvas.style.opacity = '1';
+          }, 1000);
         }
       });
     }, { threshold: 0.15 });

@@ -102,10 +102,28 @@
       console.error('[Lottie] Failed to load mainMohn.json – likely a file:// CORS block or wrong path.');
     });
 
+    /* Start particles 1s before lottie ends, fade in */
+    anim.addEventListener('DOMLoaded', () => {
+      const duration = ((anim.totalFrames || 105) / (anim.frameRate || 30)) * 1000;
+      const earlyStart = Math.max(0, duration - 1000);
+      setTimeout(() => {
+        if (!particlesStarted) {
+          particlesStarted = true;
+          canvas.style.opacity = '0';
+          canvas.style.transition = 'opacity 0.5s ease-in';
+          startParticles();
+          requestAnimationFrame(() => { canvas.style.opacity = '1'; });
+        }
+      }, earlyStart);
+    });
+
     anim.addEventListener('complete', () => {
       if (!particlesStarted) {
         particlesStarted = true;
+        canvas.style.opacity = '0';
+        canvas.style.transition = 'opacity 0.5s ease-in';
         startParticles();
+        requestAnimationFrame(() => { canvas.style.opacity = '1'; });
       }
     });
   }

@@ -387,8 +387,12 @@
 
   .slider-track {
     height: 296px;
-    gap: 10px;
+    gap: 5px;
     /* padding-left set by JS to center first card */
+  }
+
+  .slider-spark-wrapper {
+    display: none;
   }
 
   .slider-card {
@@ -396,7 +400,7 @@
   }
 
   .slider-card__lottie-wrapper {
-    width: 164px;
+    width: 180px;
     height: 230px;
   }
 
@@ -415,6 +419,10 @@
   }
 
   /* slider-fade top/height set by JS */
+  .slider-fade--left,
+  .slider-fade--right {
+    width: 60px;
+  }
 
   .slider-pagination {
     padding: 0 17px;

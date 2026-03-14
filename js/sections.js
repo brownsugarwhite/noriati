@@ -118,16 +118,16 @@
     var ctx = particleCanvas.getContext('2d');
     var particles = [];
     var COLOR = '#20726d';
-    var MAX = 90;
+    var isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    var MAX = isMobileDevice ? 40 : 90;
 
-    /* Match canvas buffer to CSS size × dpr */
-    var dpr = window.devicePixelRatio || 1;
+    var dprCap = isMobileDevice ? Math.min(window.devicePixelRatio || 1, 2) : (window.devicePixelRatio || 1);
     var rect = particleCanvas.getBoundingClientRect();
     var W = rect.width;
     var H = rect.height;
-    particleCanvas.width  = W * dpr;
-    particleCanvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    particleCanvas.width  = W * dprCap;
+    particleCanvas.height = H * dprCap;
+    ctx.setTransform(dprCap, 0, 0, dprCap, 0, 0);
 
     function createParticle() {
       var angle = Math.random() * Math.PI * 2;

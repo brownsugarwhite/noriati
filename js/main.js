@@ -118,21 +118,21 @@
 
     const ctx = canvas.getContext('2d');
     const particles = [];
+    const isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const dprCap = isMobileDevice ? Math.min(window.devicePixelRatio || 1, 2) : (window.devicePixelRatio || 1);
 
-    /* Match canvas pixel buffer to its CSS size × devicePixelRatio */
     function initCanvas() {
-      const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
-      canvas.width  = rect.width  * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.width  = rect.width  * dprCap;
+      canvas.height = rect.height * dprCap;
+      ctx.setTransform(dprCap, 0, 0, dprCap, 0, 0);
     }
     initCanvas();
 
     const W = canvas.getBoundingClientRect().width;
     const H = canvas.getBoundingClientRect().height;
     const COLOR = '#20726d';
-    const MAX = 70;
+    const MAX = isMobileDevice ? 40 : 70;
 
     function createParticle() {
       /* Spawn near center, drift upward with slight horizontal spread */

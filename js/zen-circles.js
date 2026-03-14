@@ -11,11 +11,12 @@
   document.body.appendChild(canvas);
 
   var ctx = canvas.getContext('2d');
-  var dpr = window.devicePixelRatio || 1;
+  var isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  var dpr = isMobileDevice ? Math.min(window.devicePixelRatio || 1, 2) : (window.devicePixelRatio || 1);
   var W, H;
   var circles = [];
-  var MAX = 10;
-  var INTERVAL = 4000; /* new ripple every 4s */
+  var MAX = isMobileDevice ? 6 : 10;
+  var INTERVAL = isMobileDevice ? 5000 : 4000;
   var lastSpawn = 0;
   var started = false;
 

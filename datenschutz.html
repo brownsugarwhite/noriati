@@ -237,7 +237,7 @@
     </div>
   </footer>
 
-  <script src="js/zen-circles.js?v=5"></script>
+  <script src="js/zen-circles.js"></script>
   <script>
     (function(){
       var nav = document.getElementById('main-nav');
@@ -249,13 +249,35 @@
         },{passive:true});
         nav.classList.toggle('main-nav--scrolled',window.scrollY>0);
       }
+      function openNav(){
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden','false');
+        burgerBtn.setAttribute('aria-expanded','true');
+        var items=overlay.querySelectorAll('.burger-nav-btn');
+        items.forEach(function(item,i){
+          item.style.opacity='0';item.style.transform='translateX(50px)';item.style.transition='none';
+          item.offsetHeight;
+          item.style.transition='opacity 0.3s ease-out '+(i*60)+'ms, transform 0.3s ease-out '+(i*60)+'ms';
+          requestAnimationFrame(function(){item.style.opacity='1';item.style.transform='translateX(0)';});
+        });
+      }
+      function closeNav(){
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden','true');
+        burgerBtn.setAttribute('aria-expanded','false');
+        setTimeout(function(){
+          overlay.querySelectorAll('.burger-nav-btn').forEach(function(item){
+            item.style.opacity='0';item.style.transform='translateX(50px)';item.style.transition='none';
+          });
+        },300);
+      }
       if(burgerBtn&&overlay){
         burgerBtn.addEventListener('click',function(){
           var isOpen=burgerBtn.classList.toggle('burger--active');
-          if(isOpen){burgerBtn.classList.add('was-active');overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');}
-          else{overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');}
+          if(isOpen){burgerBtn.classList.add('was-active');openNav();}
+          else{closeNav();}
         });
-        overlay.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){burgerBtn.classList.remove('burger--active');overlay.classList.remove('is-open');});});
+        overlay.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){burgerBtn.classList.remove('burger--active');closeNav();});});
       }
     })();
   </script>

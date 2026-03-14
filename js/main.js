@@ -5,6 +5,40 @@
 (function () {
   'use strict';
 
+  /* ---- Smooth scroll with custom duration ---- */
+  function smoothScrollTo(targetY, duration) {
+    var startY = window.scrollY;
+    var diff = targetY - startY;
+    var startTime = null;
+
+    function step(time) {
+      if (!startTime) startTime = time;
+      var progress = Math.min((time - startTime) / duration, 1);
+      /* ease-in-out cubic */
+      var ease = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      window.scrollTo(0, startY + diff * ease);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* Intercept all anchor links for slower smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var hash = link.getAttribute('href');
+      if (hash === '#') return;
+      var target = document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      var offset = window.innerWidth <= 700 ? 80 : 100;
+      var targetY = target.getBoundingClientRect().top + window.scrollY - offset;
+      smoothScrollTo(targetY, 1200); /* 1.2s duration */
+      history.pushState(null, '', hash);
+    });
+  });
+
   /* ---- DOM References ---- */
   const nav        = document.getElementById('main-nav');
   const overlay    = document.getElementById('nav-overlay');

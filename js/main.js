@@ -336,6 +336,23 @@
     }
   });
 
+  /* ---- Select buttons (Erstgespräch / Einzeltherapie) ---- */
+  var selectBtns = document.querySelectorAll('.select-btn');
+  var anliegenInput = document.getElementById('anliegen');
+
+  selectBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var wasSelected = btn.classList.contains('is-selected');
+      selectBtns.forEach(function (b) { b.classList.remove('is-selected'); });
+      if (!wasSelected) {
+        btn.classList.add('is-selected');
+        anliegenInput.value = btn.getAttribute('data-select');
+      } else {
+        anliegenInput.value = '';
+      }
+    });
+  });
+
   /* ---- Contact form: submit via fetch, show success message ---- */
   var kontaktForm = document.getElementById('kontakt-form');
   var kontaktSuccess = document.getElementById('kontakt-success');
@@ -355,9 +372,10 @@
         kontaktForm.querySelectorAll('.is-filled').forEach(function (el) {
           el.classList.remove('is-filled');
         });
-        kontaktForm.querySelectorAll('.select-btn.is-active').forEach(function (el) {
-          el.classList.remove('is-active');
+        kontaktForm.querySelectorAll('.select-btn.is-selected').forEach(function (el) {
+          el.classList.remove('is-selected');
         });
+        anliegenInput.value = '';
         kontaktSuccess.classList.add('is-visible');
       }).catch(function () {
         kontaktSuccess.textContent = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';

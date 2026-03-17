@@ -377,6 +377,7 @@
     if (label) {
       label.textContent = originalLabels[fieldId];
       label.classList.remove('is-error');
+      label.closest('.kontakt__field').classList.remove('is-error');
     }
   }
 
@@ -385,6 +386,8 @@
     if (label) {
       label.textContent = errorMessages[fieldId];
       label.classList.add('is-error');
+      label.closest('.kontakt__field').classList.remove('is-error');
+      label.closest('.kontakt__field').classList.add('is-error');
     }
   }
 

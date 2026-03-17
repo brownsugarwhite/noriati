@@ -627,9 +627,14 @@ select.kontakt__input option {
   color: var(--brand-purple-links);
 }
 
-/* Error state: red label */
+/* Error state: red label + red border on input */
 .kontakt__label.is-error {
   color: #c0392b;
+}
+
+.kontakt__field.is-error .kontakt__input,
+.kontakt__field.is-error .kontakt__textarea {
+  border-color: #c0392b;
 }
 
 /* Success popup overlay */

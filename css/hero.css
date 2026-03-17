@@ -120,7 +120,8 @@
   top: 70px;
   left: 0;
   right: 0;
-  bottom: -50px; /* overflow past iOS Safari transparent toolbar */
+  bottom: -200px; /* overflow past iOS Safari transparent toolbar */
+  padding-bottom: 200px; /* compensate so content stays in place */
   z-index: 99;
   background: var(--brand-white-alpha80);
   backdrop-filter: blur(6.5px);

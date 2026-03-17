@@ -441,6 +441,10 @@
   gap: 2px;
 }
 
+.kontakt__field--email {
+  max-width: 60%;
+}
+
 .kontakt__label {
   font-family: var(--font-sans);
   font-weight: 300;
@@ -861,6 +865,10 @@ select.kontakt__input option {
   /* Kontakt mobile: fields stack */
   .kontakt__row {
     flex-direction: column;
+  }
+
+  .kontakt__field--email {
+    max-width: 100%;
   }
 
   .kontakt__submit {

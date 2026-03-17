@@ -336,4 +336,34 @@
     }
   });
 
+  /* ---- Contact form: submit via fetch, show success message ---- */
+  var kontaktForm = document.getElementById('kontakt-form');
+  var kontaktSuccess = document.getElementById('kontakt-success');
+
+  if (kontaktForm && kontaktSuccess) {
+    kontaktForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var formData = new FormData(kontaktForm);
+
+      fetch(kontaktForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function () {
+        kontaktForm.reset();
+        // reset filled states
+        kontaktForm.querySelectorAll('.is-filled').forEach(function (el) {
+          el.classList.remove('is-filled');
+        });
+        kontaktForm.querySelectorAll('.select-btn.is-active').forEach(function (el) {
+          el.classList.remove('is-active');
+        });
+        kontaktSuccess.classList.add('is-visible');
+      }).catch(function () {
+        kontaktSuccess.textContent = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+        kontaktSuccess.classList.add('is-visible');
+      });
+    });
+  }
+
 })();

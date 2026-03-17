@@ -627,6 +627,19 @@ select.kontakt__input option {
   color: var(--brand-purple-links);
 }
 
+.kontakt__success {
+  display: none;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--brand-main);
+  margin-top: 16px;
+}
+
+.kontakt__success.is-visible {
+  display: block;
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */

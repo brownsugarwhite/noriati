@@ -353,13 +353,77 @@
     });
   });
 
-  /* ---- Contact form: submit via fetch, show success message ---- */
+  /* ---- Contact form: validation + fetch submit + popup ---- */
   var kontaktForm = document.getElementById('kontakt-form');
-  var kontaktSuccess = document.getElementById('kontakt-success');
+  var successPopup = document.getElementById('success-popup');
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-  if (kontaktForm && kontaktSuccess) {
+  var errorMessages = {
+    vorname: 'Bitte Vorname eingeben',
+    nachname: 'Bitte Nachname eingeben',
+    email: 'Bitte gültige E-Mail eingeben',
+    nachricht: 'Bitte Nachricht eingeben'
+  };
+
+  var originalLabels = {
+    vorname: 'Vorname*',
+    nachname: 'Nachname*',
+    email: 'E-Mail*',
+    nachricht: 'Ihre Nachricht*'
+  };
+
+  function clearError(fieldId) {
+    var label = kontaktForm.querySelector('label[for="' + fieldId + '"]');
+    if (label) {
+      label.textContent = originalLabels[fieldId];
+      label.classList.remove('is-error');
+    }
+  }
+
+  function setError(fieldId) {
+    var label = kontaktForm.querySelector('label[for="' + fieldId + '"]');
+    if (label) {
+      label.textContent = errorMessages[fieldId];
+      label.classList.add('is-error');
+    }
+  }
+
+  // Clear errors on input
+  ['vorname', 'nachname', 'email', 'nachricht'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', function () { clearError(id); });
+  });
+
+  if (kontaktForm && successPopup) {
+    // Close popup
+    successPopup.querySelector('.success-popup__close').addEventListener('click', function () {
+      successPopup.classList.remove('is-visible');
+      successPopup.setAttribute('aria-hidden', 'true');
+    });
+    successPopup.addEventListener('click', function (e) {
+      if (e.target === successPopup) {
+        successPopup.classList.remove('is-visible');
+        successPopup.setAttribute('aria-hidden', 'true');
+      }
+    });
+
     kontaktForm.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // Validate
+      var valid = true;
+      var vorname = document.getElementById('vorname');
+      var nachname = document.getElementById('nachname');
+      var email = document.getElementById('email');
+      var nachricht = document.getElementById('nachricht');
+
+      if (!vorname.value.trim()) { setError('vorname'); valid = false; } else { clearError('vorname'); }
+      if (!nachname.value.trim()) { setError('nachname'); valid = false; } else { clearError('nachname'); }
+      if (!emailRegex.test(email.value.trim())) { setError('email'); valid = false; } else { clearError('email'); }
+      if (!nachricht.value.trim()) { setError('nachricht'); valid = false; } else { clearError('nachricht'); }
+
+      if (!valid) return;
+
       var formData = new FormData(kontaktForm);
 
       fetch(kontaktForm.action, {
@@ -368,7 +432,6 @@
         headers: { 'Accept': 'application/json' }
       }).then(function () {
         kontaktForm.reset();
-        // reset filled states
         kontaktForm.querySelectorAll('.is-filled').forEach(function (el) {
           el.classList.remove('is-filled');
         });
@@ -376,10 +439,10 @@
           el.classList.remove('is-selected');
         });
         anliegenInput.value = '';
-        kontaktSuccess.classList.add('is-visible');
+        successPopup.classList.add('is-visible');
+        successPopup.setAttribute('aria-hidden', 'false');
       }).catch(function () {
-        kontaktSuccess.textContent = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
-        kontaktSuccess.classList.add('is-visible');
+        alert('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
       });
     });
   }

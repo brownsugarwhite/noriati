@@ -627,17 +627,53 @@ select.kontakt__input option {
   color: var(--brand-purple-links);
 }
 
-.kontakt__success {
-  display: none;
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 18px;
-  color: var(--brand-main);
-  margin-top: 16px;
+/* Error state: red label */
+.kontakt__label.is-error {
+  color: #c0392b;
 }
 
-.kontakt__success.is-visible {
-  display: block;
+/* Success popup overlay */
+.success-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(32, 114, 109, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.success-popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.success-popup__card {
+  background: var(--brand-white);
+  border-radius: 13px;
+  padding: 40px 36px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.success-popup__text {
+  font-family: var(--font-serif-display);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--brand-main);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.success-popup__close {
+  margin: 0 auto;
 }
 
 /* ============================================================

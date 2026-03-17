@@ -120,17 +120,26 @@
   top: 70px;
   left: 0;
   right: 0;
-  bottom: -200px; /* overflow past iOS Safari transparent toolbar */
-  padding-bottom: 200px; /* compensate so content stays in place */
+  bottom: 0;
   z-index: 99;
-  background: var(--brand-white-alpha80);
-  backdrop-filter: blur(6.5px);
-  -webkit-backdrop-filter: blur(6.5px);
   padding: 24px 17px 32px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -200px; /* extend past iOS Safari transparent toolbar */
+  background: var(--brand-white-alpha80);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  z-index: -1;
 }
 
 .nav-overlay.is-open {
